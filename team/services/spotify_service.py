@@ -3,7 +3,7 @@ import time
 import spotipy
 import pyautogui
 from spotipy.oauth2 import SpotifyOAuth
-from ..utils.app_manager import open_local_app
+from team.utils.app_manager import open_local_app
 
 # Initialize Spotify client
 spotify = spotipy.Spotify(auth_manager=SpotifyOAuth(
@@ -28,10 +28,19 @@ def spotify_play_song(query: str) -> str:
                     open_local_app("spotify")
                     time.sleep(2)  # Wait for Spotify to open
                     pyautogui.press('space')  # Press space to play/pause
-                    time.sleep(1)  # Wait a moment
-                    # Try playing again
-                    spotify.start_playback(uris=[track['uri']])
-                    return f"Playing {track['name']} by {track['artists'][0]['name']}"
+                    time.sleep(2)  # Wait a bit longer for Spotify to fully activate
+                    
+                    # Try playing again with a few retries
+                    max_retries = 3
+                    for _ in range(max_retries):
+                        try:
+                            spotify.start_playback(uris=[track['uri']])
+                            return f"Playing {track['name']} by {track['artists'][0]['name']}"
+                        except Exception:
+                            time.sleep(1)  # Wait between retries
+                            continue
+                    
+                    return f"Failed to play {track['name']} after multiple attempts. Please check if Spotify is running properly."
                 else:
                     raise e
         return "Song not found"
