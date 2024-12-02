@@ -4,6 +4,7 @@ import pyautogui
 import time
 import webbrowser
 from typing import Optional
+import requests
 
 def open_local_app(app_name: str) -> str:
     """
@@ -113,6 +114,31 @@ def find_and_open_web_app(app_name: str) -> str:
             'paypal': 'https://www.paypal.com',
             'venmo': 'https://venmo.com',
             'mint': 'https://mint.intuit.com',
+            
+            # Developer Tools & Platforms
+            'github': 'https://github.com',
+            'gitlab': 'https://gitlab.com',
+            'bitbucket': 'https://bitbucket.org',
+            'stackoverflow': 'https://stackoverflow.com',
+            'stack overflow': 'https://stackoverflow.com',
+            'codepen': 'https://codepen.io',
+            'replit': 'https://replit.com',
+            'codesandbox': 'https://codesandbox.io',
+            'vercel': 'https://vercel.com',
+            'netlify': 'https://app.netlify.com',
+            'heroku': 'https://dashboard.heroku.com',
+            'aws': 'https://aws.amazon.com',
+            'azure': 'https://portal.azure.com',
+            'gcp': 'https://console.cloud.google.com',
+            'digitalocean': 'https://cloud.digitalocean.com',
+            'docker hub': 'https://hub.docker.com',
+            'npm': 'https://www.npmjs.com',
+            'pypi': 'https://pypi.org',
+            
+            # Documentation
+            'devdocs': 'https://devdocs.io',
+            'mdn': 'https://developer.mozilla.org',
+            'w3schools': 'https://www.w3schools.com',
         }
         
         # Clean and check input

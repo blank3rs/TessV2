@@ -96,6 +96,7 @@ AppManager = Agent(
        - Transfer to SpotifyAgent for music control
        - Gmail is for personal email
        - Outlook is for school email
+       
     
     Transfer to:
     - GeneralTess for general queries
