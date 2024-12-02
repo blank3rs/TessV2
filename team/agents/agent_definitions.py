@@ -1,7 +1,15 @@
 from swarm import Agent
 from .base import AgentWithMemory
 from ..services.search_service import search_web, open_urls
-from ..services.spotify_service import spotify_play_song, spotify_current_track, spotify_create_playlist
+from ..services.spotify_service import (
+    spotify_play_song,
+    spotify_current_track,
+    spotify_create_playlist,
+    spotify_pause_song,
+    spotify_add_to_liked,
+    is_song_playing,
+    spotify_suggest_and_play_song
+)
 from ..services.email_service import read_emails, send_email
 from ..utils.app_manager import open_local_app, find_and_open_web_app
 
@@ -49,6 +57,7 @@ GeneralTess = Agent(
     - TeacherTess for educational topics
     - SearchAgent when users need current information
     - AppManager when users want to open applications, web services, or handle email operations
+    - for any myusic related stuff transfer to app manager
     Do not transfer for casual mentions. Call the appropriate transfer function when needed.
     ALWAYS transfer to AppManager for ANY email-related requests.""",
     model="gpt-4o-mini",
@@ -122,6 +131,10 @@ SpotifyAgent = Agent(
     1. Play specific songs using spotify_play_song()
     2. Check currently playing track using spotify_current_track()
     3. Create playlists using spotify_create_playlist()
+    4. Pause the current song using spotify_pause_song()
+    5. Add songs to liked using spotify_add_to_liked(track_uri)
+    6. Check if a song is currently playing using is_song_playing()
+    7. Suggest and play a song using spotify_suggest_and_play_song(query)
     
     Transfer to:
     - GeneralTess for non-music queries
@@ -134,6 +147,10 @@ SpotifyAgent = Agent(
         spotify_play_song,
         spotify_current_track,
         spotify_create_playlist,
+        spotify_pause_song,
+        spotify_add_to_liked,
+        is_song_playing,
+        spotify_suggest_and_play_song,
         transfer_to_GeneralTess,
         transfer_to_SearchAgent,
         transfer_to_AppManager
