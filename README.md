@@ -1,6 +1,6 @@
 # Assistant v2
 
-A modular AI assistant system with specialized agents for different tasks.
+A modular AI assistant system with specialized agents for different tasks. (works with azure client)
 
 ## Features
 
